@@ -4,8 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class ChangeLevels : MonoBehaviour
 {
-    [SerializeField] private string level1, level2;
-    [SerializeField] private KeyCode one, two;
+    [SerializeField] private string nextLevel;
+ 
     // Start is called before the first frame update
     void Start()
     {
@@ -13,15 +13,16 @@ public class ChangeLevels : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if(Input.GetKeyDown(one))
-           SceneManager.LoadScene(level1);
 
-        if (Input.GetKeyDown(two))
-        {
-            SceneManager.LoadScene(level2);
-        }
-        
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.CompareTag("Player"))
+            {
+                SceneManager.LoadScene(nextLevel);
+            }
     }
+
 }
+
